@@ -1,0 +1,20 @@
+body{
+  background-image: url("../img/auctioneer-and-bidding-flat-vector-23128266.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  
+}
+
+
+
+.product{
+margin: 50px;
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+
+}
+.card{
+  margin-bottom: 50px;
+}

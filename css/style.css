@@ -9,10 +9,11 @@ body {
 }
 
 .nav {
-  height: 50px;
+  height: 100px;
   width: 100%;
   background-color: #363437;
   position: relative;
+ align-items: center;
 }
 
 .nav > .nav-header {

@@ -1,3 +1,8 @@
+<?php
+session_start();
+include("./db.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,21 +42,21 @@
   <div class="container">
     <div class="screen">
       <div class="screen__content">
-        <form class="login">
+        <form class="login" action="register.php" method="post" enctype="multipart/form-data">
           <div class="login__field">
             <i class="login__icon fas fa-user"></i>
-            <input type="text" class="login__input" placeholder="User name ">
+            <input type="text" class="login__input" placeholder="User name " name="name">
           </div>
           <div class="login__field">
             <i class="login__icon fas fa-lock"></i>
-            <input type="email" class="login__input" placeholder="Email">
+            <input type="email" class="login__input" placeholder="Email"  name="email">
           </div>
           <div class="login__field">
             <i class="login__icon fas fa-lock"></i>
-            <input type="password" class="login__input" placeholder="Password">
+            <input type="password" class="login__input" placeholder="Password"  name="password">
           </div>
-          <button class="button login__submit">
-            <span class="button__text">SIGNUP Now</span>
+          <button class="button login__submit" type="submit" name="btn">
+            <span class="button__text">SIGNUP NOW</span>
             <i class="button__icon fas fa-chevron-right"></i>
           </button>				
         </form>
@@ -72,3 +77,29 @@
   </div>
 </body>
 </html>
+
+<?php
+if(isset($_POST['btn']))
+{
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $password=$_POST['password'];
+  
+
+		
+    $added  = mysqli_query($con,"INSERT INTO user (username, email, password) VALUES ('$name','$email','$password')") or die ("query incorrect");
+
+if($added){
+  echo "<script>alert('Work post Complite!')</script>";
+  $_SESSION['email']=$email;
+   echo "<script>window.open('./index.php?logged_in=you have successfuly login','_self')</script>";
+}
+
+else{
+  echo "<script>alert('Your register incomplited!')</script>";
+  echo "<script>window.open('login.php?view_work','_self')</script>";
+}
+mysqli_close($con);
+}
+
+?>

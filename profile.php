@@ -26,12 +26,12 @@
       </div>
       
       <div class="nav-links">
-        <a href="index.html" >HOME</a>
-        <a href="AddItem.html">ADDITEM</a>
+        <a href="index.php" >HOME</a>
+        <a href="AddItem.php">ADDITEM</a>
         <a href="#" >FUTURE AUCTION</a>
-        <a href="log.html">LOG</a>
-        <a href="#">PROFILE</a>
-        <a href="login.html">LOGIN/SIGNUP</a>
+        <a href="log.php">LOG</a>
+        <a href="./profile.php">PROFILE</a>
+        <a href="login.php">LOGIN/SIGNUP</a>
       </div>
     </div>
 </section>
@@ -103,10 +103,10 @@
             <h2>Useful Links</h2>
             <img src="./assets/images/about/home_line.png" alt="" class="img-fluid">
             <div class="use-links">
-              <li><a href="index.html"><i class="fa-solid fa-angles-right"></i> Home</a></li>
-              <li><a href="about.html"><i class="fa-solid fa-angles-right"></i> About Us</a></li>
-              <li><a href="gallery.html"><i class="fa-solid fa-angles-right"></i> Gallery</a></li>
-              <li><a href="contact.html"><i class="fa-solid fa-angles-right"></i> Contact</a></li>
+              <li><a href="index.php"><i class="fa-solid fa-angles-right"></i> Home</a></li>
+              <li><a href="about.php"><i class="fa-solid fa-angles-right"></i> About Us</a></li>
+              <li><a href="gallery.php"><i class="fa-solid fa-angles-right"></i> Gallery</a></li>
+              <li><a href="contact.php"><i class="fa-solid fa-angles-right"></i> Contact</a></li>
             </div>
           </div>
 

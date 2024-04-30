@@ -30,12 +30,12 @@ include("./db.php");
       </div>
       
       <div class="nav-links">
-        <a href="index.html" >HOME</a>
-        <a href="AddItem.html">ADDITEM</a>
-        <a href="#" >FUTURE AUCTION</a>
-        <a href="#">LOG</a>
-        <a href="#">PROFILE</a>
-        <a href="login.html">LOGIN/SIGNUP</a>
+        <a href="index.php" >HOME</a>
+        <a href="AddItem.php">ADDITEM</a>
+        <a href="./futureAction.php" >FUTURE AUCTION</a>
+        <a href="log.php">LOG</a>
+        <a href="profile.php">PROFILE</a>
+        <a href="login.php">LOGIN/SIGNUP</a>
       </div>
     </div>
 </section>
@@ -63,7 +63,7 @@ include("./db.php");
         <div class="social-login">
           <h3>If You are SIGNUP</h3>
           <div class="social-icons">
-            <a href="login.html" class="social-login__icon fab fa-instagram">Login</a>
+            <a href="login.php" class="social-login__icon fab fa-instagram">Login</a>
           </div>
         </div>
       </div>

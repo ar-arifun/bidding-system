@@ -26,38 +26,63 @@
       </div>
       
       <div class="nav-links">
-        <a href="index.html" >HOME</a>
-        <a href="AddItem.html">ADDITEM</a>
+        <a href="index.php" >HOME</a>
+        <a href="AddItem.php">ADDITEM</a>
         <a href="#" >FUTURE AUCTION</a>
-        <a href="#">LOG</a>
-        <a href="#">PROFILE</a>
-        <a href="login.html">LOGIN/SIGNUP</a>
+        <a href="log.php">LOG</a>
+        <a href="profile.php">PROFILE</a>
+        <a href="login.php">LOGIN/SIGNUP</a>
       </div>
     </div>
 </section>
   <div class="product">
+
+  <?php
+       include("./db.php");
+
+       $get_w = "SELECT * FROM item order by id desc";
+       $run_w = mysqli_query($con, $get_w);
+       $i=0;
+       while($row_w=mysqli_fetch_array($run_w)){
+        $id = $row_w['id'];
+        $pname = $row_w['pname'];
+        $pcata= $row_w['pcata'];
+        $price = $row_w['price'];
+        $img1 = $row_w['img1'];
+        $img2 = $row_w['img2'];
+        $img3 = $row_w['img3'];
+        $img4 = $row_w['img4'];
+        $discription = $row_w['dis'];
+        ?>
+
+
+
+
     <div class="card" style="width: 23rem;">
-        <img src="./img/0x0 (1).webp" class="card-img-top" alt="...">
+        <img src="<?php echo $img1 ?>"class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title">Card title</h5>
+          <h5 class="card-title"><?php echo $pname . "(" . $pcata . ")" ?></h5>
           <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">Hight Price 15000$</li>
+          <li class="list-group-item">Hight Price <?php echo $price ?>TAKA</li>
           <li class="list-group-item">Next Bidding Prize</li>
           <li class="list-group-item">
-            <form action="">
-               <input type="text" placeholder="Given Price"> <button type="submit"> Submit</button>
+            <form action="log.php" method="post" enctype="multipart/form-data">
+               <input type="text" placeholder="Given Price"> <button type="submit" >Submit</button>
             </form>
           </li>
         </ul>
         <div class="card-body">
-          <a href="#" class="card-link">Details</a>
-          <a href="#" class="card-link">Another link</a>
+          <a href="details.php" class="card-link">Details</a>
+          <a href="https://www.bing.com/search?pglt=41&q=vip+car+imag&cvid=0773eeabc8f8475ab18bcc33187115fb&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIGCAEQABhAMgYIAhAAGEDSAQg2ODY1ajBqMagCCLACAQ&FORM=ANNTA1&adppc=EDGEDBB&PC=EDGEDBB" target="blank" class="card-link">Another link</a>
         </div>
       </div>
 
+<?php
+       }
 
+?>
 
 
 
@@ -109,31 +134,6 @@
 
 
       <div class="card" style="width: 23rem;">
-        <img src="./img/360_F_554089913_XWTR2dNmUWlWNrL7GcZvSvPIAxHloPt5.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Hight Price 15000$</li>
-          <li class="list-group-item">Next Bidding Prize</li>
-          <li class="list-group-item">
-            <form action="">
-               <input type="text" placeholder="Given Price"> <button type="submit"> Submit</button>
-            </form>
-          </li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Details</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
-
-
-
-
-
-      <div class="card" style="width: 23rem;">
         <img src="./img/hypersport.jpg" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">Card title</h5>
@@ -154,27 +154,6 @@
         </div>
       </div>
 
-
-      <div class="card" style="width: 23rem;">
-        <img src="./img/pngtree-rainbow-curves-abstract-colorful-background-image_2164067.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Hight Price 15000$</li>
-          <li class="list-group-item">Next Bidding Prize</li>
-          <li class="list-group-item">
-            <form action="">
-               <input type="text" placeholder="Given Price"> <button type="submit"> Submit</button>
-            </form>
-          </li>
-        </ul>
-        <div class="card-body">
-          <a href="#" class="card-link">Details</a>
-          <a href="#" class="card-link">Another link</a>
-        </div>
-      </div>
 
 
 

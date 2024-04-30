@@ -25,45 +25,45 @@
       </div>
       
       <div class="nav-links">
-        <a href="index.html" >HOME</a>
-        <a href="AddItem.html">ADDITEM</a>
+        <a href="index.php" >HOME</a>
+        <a href="AddItem.php">ADDITEM</a>
         <a href="#" >FUTURE AUCTION</a>
-        <a href="log.html">LOG</a>
-        <a href="#">PROFILE</a>
-        <a href="login.html">LOGIN/SIGNUP</a>
+        <a href="log.php">LOG</a>
+        <a href="profile.php">PROFILE</a>
+        <a href="login.php">LOGIN/SIGNUP</a>
       </div>
     </div>
 </section>
-<section class="from ">
-  <form action="">
-    <label for="exampleFormControlInput1" class="form-label">Name</label>
-    <input class="form-control form-control-lg" type="text" placeholder="name" aria-label=".form-control-lg example">
-     
-    <label for="exampleFormControlInput1" class="form-label">Product catagori</label>
-    <input class="form-control" type="text" placeholder="Product catagori" aria-label="default input example">
-
-    <label for="exampleFormControlInput1" class="form-label">Prize</label>
-    <input class="form-control form-control-sm" type="text" placeholder="Start Prize" aria-label=".form-control-sm example">
-    
-    <label for="exampleFormControlInput1" class="form-label">Image -1</label>
-    <input class="form-control form-control-sm" type="file" placeholder="Image -1" aria-label=".form-control-sm example">
-   
-    <label for="exampleFormControlInput1" class="form-label">Image -2</label>
-    <input class="form-control form-control-sm" type="file" placeholder="Image -2" aria-label=".form-control-sm example">
-    
-    <label for="exampleFormControlInput1" class="form-label">Image -3</label>
-    <input class="form-control form-control-sm" type="file" placeholder="Image -3" aria-label=".form-control-sm example">
-    
-    <label for="exampleFormControlInput1" class="form-label">Image -4</label>
-    <input class="form-control form-control-sm" type="file" placeholder="Image -4" aria-label=".form-control-sm example">
-   
-    <label for="exampleFormControlInput1" class="form-label">Discription</label>
-    <textarea class="form-control form-control-lg" id="" cols="5" rows="10">
-      
-    </textarea>
-  </form>
-
 </section>
+  <section class="from">
+    <form action="additem.php" method="post" enctype="multipart/form-data">
+      <label for="pname" class="form-label">Name</label>
+      <input class="form-control form-control-lg" type="text" placeholder="Name" name="pname" id="pname" aria-label=".form-control-lg example">
+       
+      <label for="cata" class="form-label">Product Category</label>
+      <input class="form-control" type="text" placeholder="Product Category" name="cata" id="cata" aria-label="default input example">
+
+      <label for="price" class="form-label">Price</label> 
+      <input class="form-control form-control-sm" type="text" placeholder="Start Price" name="price" id="price" aria-label=".form-control-sm example">
+      
+      <label for="img1" class="form-label">Image -1</label>
+      <input class="form-control form-control-sm" type="file" name="img1" id="img1">
+     
+      <label for="img2" class="form-label">Image -2</label>
+      <input class="form-control form-control-sm" type="file" name="img2" id="img2">
+      
+      <label for="img3" class="form-label">Image -3</label>
+      <input class="form-control form-control-sm" type="file" name="img3" id="img3">
+      
+      <label for="img4" class="form-label">Image -4</label>
+      <input class="form-control form-control-sm" type="file" name="img4" id="img4">
+     
+      <label for="dis" class="form-label">Description</label>
+      <textarea class="form-control form-control-lg" id="dis" cols="5" rows="10" name="dis"></textarea>
+
+      <button type="submit" name="btn" class="btn btn-primary" style="margin:20px;">Insert</button> 
+    </form>
+  </section>
   
 
 
@@ -139,3 +139,47 @@
 </div>
 </body>
 </html>
+
+
+
+
+<?php
+include("./db.php");
+
+// Check if the form is submitted
+if(isset($_POST['btn'])) {
+    // Escape user inputs for security
+    $pname = $con->real_escape_string($_POST['pname']);
+    $cata = $con->real_escape_string($_POST['cata']);
+    $price = $con->real_escape_string($_POST['price']);
+    $dis = $con->real_escape_string($_POST['dis']);
+
+    // File upload handling for images
+    $targetDir = "./uploads/"; // Directory where images will be uploaded
+    $img1 = $targetDir . basename($_FILES['img1']['name']);
+    $img2 = $targetDir . basename($_FILES['img2']['name']);
+    $img3 = $targetDir . basename($_FILES['img3']['name']);
+    $img4 = $targetDir . basename($_FILES['img4']['name']);
+
+    // Insert data into the database
+    $insertQuery = "INSERT INTO item(pname, pcata, price, img1, img2, img3, img4, dis) 
+                    VALUES ('$pname','$cata', '$price', '$img1', '$img2', '$img3', '$img4', '$dis')";
+
+    if (mysqli_query($con, $insertQuery)) {
+        // Upload images to the specified directory
+        move_uploaded_file($_FILES['img1']['tmp_name'], $img1);
+        move_uploaded_file($_FILES['img2']['tmp_name'], $img2);
+        move_uploaded_file($_FILES['img3']['tmp_name'], $img3);
+        move_uploaded_file($_FILES['img4']['tmp_name'], $img4);
+
+            echo "<script>alert('New record created successfully!')</script>";
+            echo "<script>window.open('additem.php?view_work','_self')</script>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            echo "<script>alert('Sorry, there was an error uploading your files.')</script>";
+            echo "<script>window.open('additem.php?view_work','_self')</script>";
+        }
+    } 
+    // Close connection
+    $con->close();
+?>
